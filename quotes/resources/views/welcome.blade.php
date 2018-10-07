@@ -47,6 +47,17 @@
             .title {
                 font-size: 84px;
             }
+            
+            .quote-card {
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                width: 300px;
+                height: 300px;
+            }
+            
+            .quote-text {
+                padding: 20px 20px;
+                text-align: center
+            }
 
             .links > a {
                 color: #636b6f;
@@ -60,6 +71,12 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: 400px 400px 400px;
+                grid-template-rows: 400px 400px 400px;
             }
         </style>
     </head>
@@ -93,6 +110,14 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
+        </div>
+
+        <div class="grid-container">
+            @foreach ($quotes as $quote)
+                <div class="quote-card">
+                    <div class="quote-text">{{ $quote }}</div>
+                </div>
+            @endforeach
         </div>
     </body>
 </html>
