@@ -48,12 +48,11 @@
                 font-size: 84px;
             }
 
+
             .quote-card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                width: 300px;
-                height: 300px;
             }
-
+            
             .quote-text {
                 padding: 20px 20px;
                 text-align: center
@@ -75,13 +74,23 @@
 
             .grid-container {
                 display: grid;
-                grid-template-columns: 400px 400px 400px;
-                grid-template-rows: 400px 400px 400px;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-auto-rows: minmax(300px, auto);
+                grid-gap: 1em;
+                grid-column-start:2;
+            }
+            .page {
+                display:grid;
+                grid-template-columns: 10% 80% 10%;
+            }
+            .title {
+                grid-column-start:2;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="page">
+        <div class="flex-center position-ref full-height title">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -115,7 +124,7 @@
         <div class="grid-container">
             @foreach ($quotes as $quote)
                 <div class="quote-card">
-                    @if ($loop->iteration % 5 == 0)
+                    @if (0)
                         <script type="text/javascript">
                             ( function() {
                                     if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
@@ -127,10 +136,11 @@
                         </script>
                         <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
                     @else
-                    <div class="quote-text">{{ $quote }}</div>
+                    <div class="quote-text">{{ $quote->Quote }}</div>
                     @endif
                 </div>
             @endforeach
+        </div>
         </div>
     </body>
 </html>

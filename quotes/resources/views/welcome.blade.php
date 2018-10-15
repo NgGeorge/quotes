@@ -50,8 +50,6 @@
             
             .quote-card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                width: 300px;
-                height: 300px;
             }
             
             .quote-text {
@@ -75,13 +73,24 @@
 
             .grid-container {
                 display: grid;
-                grid-template-columns: 400px 400px 400px;
-                grid-template-rows: 400px 400px 400px;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-auto-rows: minmax(300px, auto);
+                grid-gap: 1em;
+                grid-column-start:2;
             }
+            .page {
+                display:grid;
+                grid-template-columns: 20% 60% 20%;
+            }
+            .title {
+                grid-column-start:2;
+            }
+
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="page">
+        <div class="flex-center position-ref full-height title">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -118,6 +127,7 @@
                     <div class="quote-text">{{ $quote }}</div>
                 </div>
             @endforeach
+        </div>
         </div>
     </body>
 </html>
