@@ -58,12 +58,24 @@
 			}
 
             .quote-card {
+                display: grid;
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding: 40px;
+                grid-gap: 1em;
+                text-align: center;
             }
 
             .quote-text {
-                padding: 20px 20px;
                 text-align: center
+            }
+            .quote-author {
+                font-style: italic;
+            }
+            .quote-source {
+                text-align: left;
+            }
+            .quote-source a {
+                text-decoration: none;
             }
 
             .links > a {
@@ -84,7 +96,7 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 grid-auto-rows: minmax(300px, auto);
-                grid-gap: 1em;
+                grid-gap: 2em;
                 grid-column-start:2;
             }
             .page {
@@ -146,7 +158,9 @@
 							<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 						</div>
                     @else
-						<div class="quote-text">{{ $quote->Quote }}</div>
+                        <div class="quote-text">{{ $quote->Quote }}</div>
+                        <div class="quote-author"> - {{ $quote->Author }}</div>
+                        <div class="quote-source"><a href="{{ $quote->Source_Link }}">{{ $quote->Context }}</a></div>
                     @endif
                 </div>
             @endforeach

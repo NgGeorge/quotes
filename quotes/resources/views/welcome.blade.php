@@ -50,12 +50,20 @@
             
             .quote-card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding: 20px 20px;
+                display: grid;
             }
             
             .quote-text {
-                padding: 20px 20px;
                 text-align: center
             }
+            .quote-author {
+                text-align: center
+            }
+            .quote-source {
+                text-align: center
+            }
+
 
             .links > a {
                 color: #636b6f;
