@@ -78,6 +78,14 @@
                 text-decoration: none;
             }
 
+            .search-box {
+                display: inline;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -131,12 +139,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="#">Flash Quotes</a>
+                    <form class="search-box">
+                        <input type="text" name="search">
+                    </form>
                 </div>
             </div>
         </div>
