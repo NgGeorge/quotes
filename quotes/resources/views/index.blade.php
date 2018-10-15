@@ -45,14 +45,22 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 50px;
             }
 
+			.ad-box {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				text-align: center;
+			}
 
             .quote-card {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             }
-            
+
             .quote-text {
                 padding: 20px 20px;
                 text-align: center
@@ -74,7 +82,7 @@
 
             .grid-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 grid-auto-rows: minmax(300px, auto);
                 grid-gap: 1em;
                 grid-column-start:2;
@@ -107,7 +115,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                "{{ $QOTD->Quote }}"
                 </div>
 
                 <div class="links">
@@ -124,19 +132,21 @@
         <div class="grid-container">
             @foreach ($quotes as $quote)
                 <div class="quote-card">
-                    @if (0)
-                        <script type="text/javascript">
-                            ( function() {
-                                    if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-                                    var unit = {"calltype":"async[2]","publisher":"gngcp","width":300,"height":250,"sid":"Chitika Default"};
-                                    var placement_id = window.CHITIKA.units.length;
-                                    window.CHITIKA.units.push(unit);
-                                    document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-                            }());
-                        </script>
-                        <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+                    @if ($loop->iteration % 7 == 0)
+						<div class="ad-box">
+							<script type="text/javascript">
+								( function() {
+										if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+										var unit = {"calltype":"async[2]","publisher":"gngcp","width":300,"height":250,"sid":"Chitika Default"};
+										var placement_id = window.CHITIKA.units.length;
+										window.CHITIKA.units.push(unit);
+										document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
+								}());
+							</script>
+							<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+						</div>
                     @else
-                    <div class="quote-text">{{ $quote->Quote }}</div>
+						<div class="quote-text">{{ $quote->Quote }}</div>
                     @endif
                 </div>
             @endforeach
