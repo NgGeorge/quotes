@@ -44,6 +44,16 @@
                 text-align: center;
             }
 
+            .persist-top {
+                position: fixed;
+                align-items: center;
+                text-align: center;
+                background-color: white;
+                width: 100%;
+                padding: 30px;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            }
+
             .title {
                 font-size: 50px;
             }
@@ -137,14 +147,14 @@
                 <div class="title m-b-md">
                 "{{ $QOTD->Quote }}"
                 </div>
-
-                <div class="links">
-                    <a href="#">Flash Quotes</a>
-                    <form class="search-box">
-                        <input type="text" name="search">
-                    </form>
-                </div>
             </div>
+        </div>
+
+        <div class="links persist-top">
+            <a href="#">Flash Quotes</a>
+            <form class="search-box">
+                <input type="text" name="search">
+            </form>
         </div>
 
         <div class="grid-container">
