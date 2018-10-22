@@ -51,7 +51,19 @@
                 background-color: white;
                 width: 100%;
                 padding: 30px;
+            }
+
+            .box-shadow {
                 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+				transition: box-shadow 0.2s ease-in;
+            }
+
+			.no-box-shadow {
+				transition: box-shadow 0.2s ease-out;
+			}
+
+            .no-left-padding {
+                padding-left: 0;
             }
 
             .title {
@@ -125,6 +137,22 @@
                 grid-column-start:2;
             }
         </style>
+
+        <!-- Scripts -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			// We'll move all the scripts and styles out when elixir is setup
+			$(window).on('scroll', function() {
+				if ($(window).scrollTop() !== 0) {
+				   $('#nav').addClass('box-shadow');
+				}
+				else {
+				   $('#nav').removeClass('box-shadow');
+				   $('#nav').addClass('no-box-shadow');
+				}
+			});
+        </script>
     </head>
     <body>
         <div class="page">
@@ -150,8 +178,8 @@
             </div>
         </div>
 
-        <div class="links persist-top">
-            <a href="#">Flash Quotes</a>
+        <div id="nav" class="links persist-top no-box-shadow">
+            <a href="#" class="no-left-padding">Flash Quotes</a>
             <form class="search-box">
                 <input type="text" name="search">
             </form>
