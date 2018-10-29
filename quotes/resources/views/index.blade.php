@@ -142,6 +142,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
+            // Box Shadow Script
 			// We'll move all the scripts and styles out when elixir is setup
 			$(window).on('scroll', function() {
 				if ($(window).scrollTop() !== 0) {
@@ -152,6 +153,17 @@
 				   $('#nav').addClass('no-box-shadow');
 				}
 			});
+        </script>
+        <script>
+            // Search Script
+            $(window).on('keyup', () => {
+                console.log('test');
+                    let search = $('#searchBox').val().replace(/\s/g, '|');
+                    $.get('/api/search', {term: search}).done(function (data) {
+                        console.log(data);
+                    }
+                );
+            });
         </script>
     </head>
     <body>
@@ -181,7 +193,7 @@
         <div id="nav" class="links persist-top no-box-shadow">
             <a href="#" class="no-left-padding">Flash Quotes</a>
             <form class="search-box">
-                <input type="text" name="search">
+                <input id="searchBox" type="text" name="search">
             </form>
         </div>
 

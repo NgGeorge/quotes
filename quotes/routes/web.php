@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/api/search', 'apiController@search');
 Route::get('/test', function () {
     return view('welcome', ['quotes' => [
         'The people who are crazy enough to think they can change the world are the ones who do.',
