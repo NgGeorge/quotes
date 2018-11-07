@@ -157,13 +157,44 @@
         <script>
             // Search Script
             $(window).on('keyup', () => {
-                console.log('test');
-                    let search = $('#searchBox').val().replace(/\s/g, '|');
-                    $.get('/api/search', {term: search}).done(function (data) {
-                        console.log(data);
+                let search = $('#searchBox').val().replace(/\s/g, '|');
+                $.get('/api/search', {term: search}).done(function (data) {
+                    $('.grid-container').empty();
+                    $.each(JSON.parse(data), function(index, quote) {
+                        if ((index + 1) % 7 == 0) {
+                            $('.grid-container').append(buildAdCard());
+                        } else {
+                            $('.grid-container').append(buildCard(quote));
+                        }
+                    });
+                });
+            });
+
+            function buildCard(quote) {
+                let $card = $('<div class="quote-card"></div>');
+
+                let $quote = $('<div class="quote-text">' + quote['Quote'] + '</div>');
+                let $author = $('<div class="quote-author">' + quote['Author'] + '</div>');
+                let $source = $('<div class="quote-source"><a href="' + quote['Source_Link'] + '">' + quote['Context'] + '</a></div>');
+
+                $card.append($quote);
+                $card.append($author);
+                $card.append($source);
+
+                return $card;
+            }
+
+            function buildAdCard() {
+                let $card = $('<div class="quote-card"></div>');
+                $.get('/api/getAd', function(ad) {
+                        //$card.append(ad);
+                        //This won't work because document.write
+                        //we'll have to work around it
+                        console.log(ad);
                     }
                 );
-            });
+                return $card;
+            }
         </script>
     </head>
     <body>

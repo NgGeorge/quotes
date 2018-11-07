@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Quote;
 use Illuminate\Http\Request;
+use App\Models;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('index', ['quotes' => Quote::all(), 'QOTD' => Quote::inRandomOrder()->first()]);
+        return view('index', ['quotes' => Models\Quote::all(), 'QOTD' => Models\Quote::inRandomOrder()->first()]);
     }
 }
