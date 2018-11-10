@@ -154,6 +154,7 @@
 				}
 			});
         </script>
+        <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
         <script>
             // Search Script
             $(window).on('keyup', () => {
@@ -168,6 +169,10 @@
                         }
                     });
                 });
+                // reload ads after the cards are built
+                setTimeout(function(){
+                    loadAds();
+                }, 500);
             });
 
             function buildCard(quote) {
@@ -185,16 +190,33 @@
             }
 
             function buildAdCard() {
-                let $card = $('<div class="quote-card"></div>');
-                $.get('/api/getAd', function(ad) {
-                        //$card.append(ad);
-                        //This won't work because document.write
-                        //we'll have to work around it
-                        console.log(ad);
-                    }
-                );
+                let $card = $('<div class="quote-card"><div class="ad-box"></div></div>');
                 return $card;
             }
+
+            function buildAdBox($adBox) {
+                var unit = {
+                    "calltype":"async[2]",
+                    "publisher": "gngcp",
+                    "width":300,
+                    "height":250,
+                    "sid": "Chitika Default"
+                };
+                if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
+                var placement_id = window.CHITIKA.units.length;
+                window.CHITIKA.units.push(unit);
+                $adBox.innerHTML = '<div id="chitikaAdBlock-' + placement_id + '"></div>';
+            }
+
+            function loadAds() {
+                var $adBoxes = document.getElementsByClassName('ad-box');
+                for(var i=0; i<$adBoxes.length; i++){
+                    buildAdBox($adBoxes[i]);
+                }
+            }
+        </script>
+        <script>
+
         </script>
     </head>
     <body>
@@ -233,16 +255,7 @@
                 <div class="quote-card">
                     @if ($loop->iteration % 7 == 0)
 						<div class="ad-box">
-							<script type="text/javascript">
-								( function() {
-										if (window.CHITIKA === undefined) { window.CHITIKA = { 'units' : [] }; };
-										var unit = {"calltype":"async[2]","publisher":"gngcp","width":300,"height":250,"sid":"Chitika Default"};
-										var placement_id = window.CHITIKA.units.length;
-										window.CHITIKA.units.push(unit);
-										document.write('<div id="chitikaAdBlock-' + placement_id + '"></div>');
-								}());
-							</script>
-							<script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
+                            <script> loadAds(); </script>
 						</div>
                     @else
                         <div class="quote-text">{{ $quote->Quote }}</div>
