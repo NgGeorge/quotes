@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Flash Quotes</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -71,11 +71,11 @@
             }
 
 			.ad-box {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
+                display: grid;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding-left: 00px;
+                padding-top: 25px;
+                grid-gap: 1em;
 				text-align: center;
 			}
 
@@ -141,6 +141,7 @@
         <!-- Scripts -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
 		<script>
             // Box Shadow Script
 			// We'll move all the scripts and styles out when elixir is setup
@@ -154,7 +155,6 @@
 				}
 			});
         </script>
-        <script type="text/javascript" src="//cdn.chitika.net/getads.js" async></script>
         <script>
             // Search Script
             $(window).on('keyup', () => {
@@ -190,7 +190,7 @@
             }
 
             function buildAdCard() {
-                let $card = $('<div class="quote-card"><div class="ad-box"></div></div>');
+                let $card = $('<div class="ad-box"></div>');
                 return $card;
             }
 
@@ -214,9 +214,6 @@
                     buildAdBox($adBoxes[i]);
                 }
             }
-        </script>
-        <script>
-
         </script>
     </head>
     <body>
@@ -251,19 +248,19 @@
         </div>
 
         <div class="grid-container">
-            @foreach ($quotes as $quote)
-                <div class="quote-card">
-                    @if ($loop->iteration % 7 == 0)
-						<div class="ad-box">
-                            <script> loadAds(); </script>
-						</div>
-                    @else
-                        <div class="quote-text">{{ $quote->Quote }}</div>
-                        <div class="quote-author"> - {{ $quote->Author }}</div>
-                        <div class="quote-source"><a href="{{ $quote->Source_Link }}">{{ $quote->Context }}</a></div>
-                    @endif
-                </div>
-            @endforeach
+@foreach ($quotes as $quote)
+    @if ($loop->iteration % 7 == 0)
+            <div class="ad-box">
+                <script> loadAds(); </script>
+            </div>
+    @else
+            <div class="quote-card">
+                <div class="quote-text">{{ $quote->Quote }}</div>
+                <div class="quote-author"> - {{ $quote->Author }}</div>
+                <div class="quote-source"><a href="{{ $quote->Source_Link }}">{{ $quote->Context }}</a></div>
+            </div>
+    @endif
+@endforeach
         </div>
         </div>
     </body>
